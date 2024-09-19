@@ -26,7 +26,7 @@ selected_isolates = st.sidebar.multiselect("Choose Isolate(s)", isolate_options[
 
 # Display the selected isolate names
 if selected_isolates:
-    st.write(f"Selected Individual Isolates: {selected_isolates}")
+    # st.write(f"Selected Individual Isolates: {selected_isolates}")
     
     # Filter and display the sequences for the selected isolates
     filtered_df_individual = df[df['Unnamed: 0'].isin(selected_isolates)].iloc[:, 2:]  # Sequence columns only
@@ -43,10 +43,10 @@ if selected_isolates:
     mismatch_fraction_individual = mismatches_individual / total_isolates_individual
     
     # Collapsible section for mismatch frequency for the selected individual isolates
-    with st.expander("Mismatch Frequency for Selected Individual Isolates:"):
+    with st.expander(f"Mismatch Frequency for Selected Individual Isolates ({total_isolates_individual} total):"):
         mismatch_individual_df = pd.DataFrame({
             'Mismatches': mismatches_individual,
-            'Total Isolates': total_isolates_individual,
+            # 'Total Isolates': total_isolates_individual,
             'Mismatch Fraction': mismatch_fraction_individual
         })
         st.dataframe(mismatch_individual_df)
@@ -77,10 +77,10 @@ if selected_group:
     mismatch_fraction_group = mismatches_group / total_isolates_in_group
     
     # Collapsible section for mismatch frequency for the group
-    with st.expander("Mismatch Frequency for Selected Group:"):
+    with st.expander(f"Mismatch Frequency for Selected Group ({total_isolates_in_group} total):"):
         mismatch_group_df = pd.DataFrame({
             'Mismatches': mismatches_group,
-            'Total Isolates': total_isolates_in_group,
+            # 'Total Isolates': total_isolates_in_group,
             'Mismatch Fraction': mismatch_fraction_group
         })
         st.dataframe(mismatch_group_df)
@@ -92,10 +92,10 @@ if selected_group:
     mismatch_fraction_all = mismatches_all / total_isolates
     
     # Collapsible section for mismatch frequency for all isolates
-    with st.expander("Mismatch Frequency for All Isolates:"):
+    with st.expander(f"Mismatch Frequency for All {total_isolates} Isolates:"):
         mismatch_all_df = pd.DataFrame({
             'Mismatches': mismatches_all,
-            'Total Isolates': total_isolates,
+            # 'Total Isolates': total_isolates,
             'Mismatch Fraction': mismatch_fraction_all
         })
         st.dataframe(mismatch_all_df)
